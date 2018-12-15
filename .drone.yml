@@ -9,6 +9,8 @@ steps:
       from_secret: username
     PASSWORD:
       from_secret: password
+    MYSECRET:
+      from_secret: MYSECRET
   settings:
     repo: octocat/server
     tags: latest
