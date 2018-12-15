@@ -4,6 +4,11 @@ name: greeting
 steps:
 - name: en
   image: alpine
+  environment:
+    USERNAME:
+      from_secret: username
+    PASSWORD:
+      from_secret: password
   settings:
     repo: octocat/server
     tags: latest
