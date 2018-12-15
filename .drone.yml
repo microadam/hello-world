@@ -12,8 +12,8 @@ steps:
     password:
       from_secret: password
   commands:
-  - echo hello
-  - echo world
+  - echo ${USERNAME}
+  - echo $${USERNAME}
 
 ---
 kind: secret
