@@ -3,7 +3,7 @@ name: greeting
 
 steps:
 - name: en
-  image: alpine
+  image: eu.gcr.io/test-k8s-1289/clock-node:8.11.3-build
   commands:
   - echo hello
   - echo world
