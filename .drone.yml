@@ -4,24 +4,24 @@ name: greeting
 steps:
 - name: en
   image: alpine
-  environment:
-    USERNAME:
+  settings:
+    repo: octocat/server
+    tags: latest
+    username:
       from_secret: username
-    PASSWORD:
+    password:
       from_secret: password
   commands:
   - echo hello
   - echo world
 
-- name: es
-  image: alpine
-  commands:
-  - echo hola
-  - echo mundo
+---
+kind: secret
 
-- name: fr
-  image: alpine
-  commands:
-  - echo bonjour
-  - echo monde
-
+external_data:
+  username:
+    path: secret/data/docker
+    name: username
+  password:
+    path: secret/data/docker
+    name: password
