@@ -8,7 +8,7 @@ steps:
       - echo "YML OR A CHANGED"
     when:
       changeset:
-        includes: [ 'a/**' ]
+        includes: [ '*' ]
 
 trigger:
   changeset:
