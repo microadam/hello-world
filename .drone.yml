@@ -5,7 +5,7 @@ steps:
   - name: test
     image: alpine
     commands:
-      - echo "MD CHANGED"
+      - echo "YML CHANGED"
     when:
       changeset:
-        includes: [ '*.md' ]
+        includes: [ '**/*.yml' ]
