@@ -1,38 +1,11 @@
 kind: pipeline
-name: greeting
+name: default
 
 steps:
-- name: en
-  image: alpine
-  environment:
-    USERNAME:
-      from_secret: username
-    PASSWORD:
-      from_secret: password
-    MYSECRET:
-      from_secret: MYSECRET
-  settings:
-    repo: octocat/server
-    tags: latest
-    username:
-      from_secret: username
-    password:
-      from_secret: password
-  commands:
-  - export
-  - echo "$USERNAME"
-  - echo "$${USERNAME}"
-  - echo $MYSECRET
-  - echo "$MYSECRET"
-  - echo $${MYSECRET}
-
----
-kind: secret
-
-external_data:
-  username:
-    path: secret/data/docker
-    name: username
-  password:
-    path: secret/data/docker
-    name: password
+  - name: test
+    image: alpine
+    commands:
+      - echo "MD CHANGED"
+    when:
+      changeset:
+        includes: [ '*.md' ]
