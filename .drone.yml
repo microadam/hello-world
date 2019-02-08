@@ -12,4 +12,4 @@ steps:
 
 trigger:
   changeset:
-    includes: [ '*' ]
+    includes: [ 'a/**' ]
