@@ -2,6 +2,11 @@ kind: pipeline
 name: default
 
 steps:
+  - name: always
+    image: alpine
+    commands:
+      - echo "ALWAYS"
+
   - name: test
     image: alpine
     commands:
@@ -12,4 +17,4 @@ steps:
 
 trigger:
   changeset:
-    includes: [ 'a/**' ]
+    includes: [ '**', '.drone.yml' ]
