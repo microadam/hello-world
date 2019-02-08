@@ -5,7 +5,7 @@ steps:
   - name: test
     image: alpine
     commands:
-      - echo "YML CHANGED"
+      - echo "YML OR A CHANGED"
     when:
       changeset:
-        includes: [ '**/*.yml' ]
+        includes: [ 'a/**' ]
