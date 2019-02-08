@@ -9,3 +9,7 @@ steps:
     when:
       changeset:
         includes: [ 'a/**' ]
+
+trigger:
+  changeset:
+    includes: [ '*' ]
