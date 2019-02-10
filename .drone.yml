@@ -29,6 +29,7 @@ steps:
       - export GITHUB_OWNER=$DRONE_REPO_NAMESPACE
       - export GITHUB_REPO=$DRONE_REPO_NAME
       - export GITHUB_REF=$DRONE_COMMIT
+      - export
       - github-status-updater
 
   - name: test-two
