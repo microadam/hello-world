@@ -43,6 +43,9 @@ steps:
 trigger:
   changeset:
     includes: [ '**' ]
+  event:
+    exclude:
+    - pull_request
 
 ---
 kind: secret
