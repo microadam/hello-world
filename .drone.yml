@@ -24,12 +24,12 @@ steps:
       GITHUB_CONTEXT: iOS IPA
       GITHUB_STATE: success
       GITHUB_DESCRIPTION: Download IPA
-      GITHUB_TARGET_URL: http://google.com
     commands:
+      - echo "http://bla.com" >| ios-xfer
       - export GITHUB_OWNER=$DRONE_REPO_NAMESPACE
       - export GITHUB_REPO=$DRONE_REPO_NAME
       - export GITHUB_REF=$DRONE_COMMIT
-      - export
+      - export GITHUB_TARGET_URL=$(cat ios-xfer)
       - github-status-updater
 
   - name: test-two
