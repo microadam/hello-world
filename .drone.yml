@@ -2,43 +2,18 @@ kind: pipeline
 name: default
 
 steps:
-  - name: always
-    image: alpine
-    commands:
-      - echo "ALWAYS"
-
   - name: test
-    image: alpine
-    commands:
-      - echo "YML OR A CHANGED"
-    when:
-      changeset:
-        includes: [ '**' ]
-
-  - name: update-ios-github-status
-    image: cloudposse/github-status-updater
+    image: microadam/drone-osx-runner
     environment:
-      GITHUB_ACTION: update_state
-      GITHUB_TOKEN:
-        from_secret: github_token
-      GITHUB_CONTEXT: iOS IPA
-      GITHUB_STATE: success
-      GITHUB_DESCRIPTION: Download IPA
-    commands:
-      - echo "http://bla.com" >| ios-xfer
-      - export GITHUB_OWNER=$DRONE_REPO_NAMESPACE
-      - export GITHUB_REPO=$DRONE_REPO_NAME
-      - export GITHUB_REF=$DRONE_COMMIT
-      - export GITHUB_TARGET_URL=$(cat ios-xfer)
-      - github-status-updater
-
-  - name: test-two
-    image: byrnedo/alpine-curl
-    commands:
-      - export VERSION=$(sed -n 's/.*version="\([^"]*\).*/\1/p' a/b/two.xml)
-      - echo $VERSION
-      - echo $DRONE_COMMIT
-      - curl "https://postman-echo.com/get?version=$VERSION&sha=$DRONE_COMMIT"
+      MY_ENV: "Hello"
+    settings:
+      host: 'http://microadam.co.uk:3000'
+      key: 'abc123'
+      inputContext:
+        - .
+      commands:
+        - echo $MY_ENV
+        - echo $DRONE_COMMIT
 
 trigger:
   changeset:
