@@ -15,6 +15,20 @@ steps:
       changeset:
         includes: [ '**' ]
 
+  - name: update-ios-github-status
+    image: cloudposse/github-status-updater
+    environment:
+      GITHUB_ACTION: update_state
+      GITHUB_TOKEN:
+        from_secret: github_token
+      GITHUB_OWNER: $${DRONE_REPO_NAMESPACE}
+      GITHUB_REPO: $${DRONE_REPO_NAME}
+      GITHUB_REF: $${DRONE_COMMIT}
+      GITHUB_CONTEXT: iOS IPA
+      GITHUB_STATE: success
+      GITHUB_DESCRIPTION: Download IPA
+      GITHUB_TARGET_URL: http://master.demo.cloudposse.org
+
   - name: test-two
     image: byrnedo/alpine-curl
     commands:
@@ -26,3 +40,10 @@ steps:
 trigger:
   changeset:
     includes: [ '**' ]
+
+---
+kind: secret
+
+external_data:
+  github_token:
+    name: githubToken
