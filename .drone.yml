@@ -21,13 +21,13 @@ steps:
       GITHUB_ACTION: update_state
       GITHUB_TOKEN:
         from_secret: github_token
-      GITHUB_OWNER: $${DRONE_REPO_NAMESPACE}
-      GITHUB_REPO: $${DRONE_REPO_NAME}
-      GITHUB_REF: $${DRONE_COMMIT}
+      GITHUB_OWNER: $DRONE_REPO_NAMESPACE
+      GITHUB_REPO: $DRONE_REPO_NAME
+      GITHUB_REF: $DRONE_COMMIT
       GITHUB_CONTEXT: iOS IPA
       GITHUB_STATE: success
       GITHUB_DESCRIPTION: Download IPA
-      GITHUB_TARGET_URL: http://master.demo.cloudposse.org
+      GITHUB_TARGET_URL: http://google.com
 
   - name: test-two
     image: byrnedo/alpine-curl
