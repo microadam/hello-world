@@ -15,6 +15,14 @@ steps:
       changeset:
         includes: [ '**' ]
 
+  - name: test-two
+    image: node:10.15.1-alpine
+    commands:
+      - export VERSION=$(sed -n 's/.*version="\([^"]*\).*/\1/p' a/b/two.xml)
+      - echo $VERSION
+      - echo $DRONE_COMMIT
+      - curl "https://postman-echo.com/get?version=$VERSION&sha=$DRONE_COMMIT"
+
 trigger:
   changeset:
-    includes: [ '**', '.drone.yml' ]
+    includes: [ '**' ]
