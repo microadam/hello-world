@@ -16,7 +16,7 @@ steps:
         includes: [ '**' ]
 
   - name: test-two
-    image: node:10.15.1-alpine
+    image: byrnedo/alpine-curl
     commands:
       - export VERSION=$(sed -n 's/.*version="\([^"]*\).*/\1/p' a/b/two.xml)
       - echo $VERSION
