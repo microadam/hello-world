@@ -22,7 +22,7 @@ steps:
     when:
       ref:
         include:
-          - refs/tags/v.*-*
+          - refs/tags/v*-*
 
   - name: prod-tag
     image: node:10.15.1-alpine
@@ -33,7 +33,7 @@ steps:
         include:
           - refs/tags/v*
         exclude:
-          - refs/tags/v.*-*
+          - refs/tags/v*-*
 
 trigger:
   changeset:
