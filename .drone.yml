@@ -2,18 +2,38 @@ kind: pipeline
 name: default
 
 steps:
-  - name: test
-    image: microadam/drone-osx-runner
-    environment:
-      MY_ENV: "Hello"
-    settings:
-      host: 'http://microadam.co.uk:3000'
-      key: 'abc123'
-      inputContext:
-        - .
-      commands:
-        - echo $MY_ENV
-        - echo $DRONE_COMMIT
+  # - name: test
+  #   image: microadam/drone-osx-runner
+  #   environment:
+  #     MY_ENV: "Hello"
+  #   settings:
+  #     host: 'http://microadam.co.uk:3000'
+  #     key: 'abc123'
+  #     inputContext:
+  #       - .
+  #     commands:
+  #       - echo $MY_ENV
+  #       - echo $DRONE_COMMIT
+
+  - name: staging-tag
+    image: node:10.15.1-alpine
+    commands:
+      - echo "STAGING"
+    when:
+      ref:
+        include:
+          - refs/tags/v.*-*
+
+  - name: prod-tag
+    image: node:10.15.1-alpine
+    commands:
+      - echo "PRODUCTION"
+    when:
+      ref:
+        include:
+          - refs/tags/v*
+        exclude:
+          - refs/tags/v.*-*
 
 trigger:
   changeset:
